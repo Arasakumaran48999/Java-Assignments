@@ -1,0 +1,683 @@
+Microsoft Windows [Version 10.0.19043.1165]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Arasakumaran>mysql.exe -arasakumaran -p
+mysql: [ERROR] mysql.exe: unknown option '-a'.
+
+C:\Users\Arasakumaran>mysql.exe -u arasakumaran -p
+Enter password: ***************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 26
+Server version: 8.0.26 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database student;
+ERROR 1007 (HY000): Can't create database 'student'; database exists
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| personaldatabase   |
+| sakila             |
+| student            |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.42 sec)
+
+mysql> use student;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| employee          |
+| student1          |
++-------------------+
+2 rows in set (0.08 sec)
+
+mysql> select * from student1;
++-------+--------------+------------+
+| stdid | stdname      | stdaddress |
++-------+--------------+------------+
+|     1 | arasakumaran | madurai    |
++-------+--------------+------------+
+1 row in set (0.16 sec)
+
+mysql> insert into student1 values(3,'raina','pune');
+Query OK, 1 row affected (0.40 sec)
+
+mysql> select * from student1;
++-------+--------------+------------+
+| stdid | stdname      | stdaddress |
++-------+--------------+------------+
+|     1 | arasakumaran | madurai    |
+|     3 | raina        | pune       |
++-------+--------------+------------+
+2 rows in set (0.02 sec)
+
+mysql> select * from student1;
++-------+--------------+------------+
+| stdid | stdname      | stdaddress |
++-------+--------------+------------+
+|     1 | arasakumaran | madurai    |
+|     3 | raina        | pune       |
+|     2 | hari         | chennai    |
+|     2 | hari         | chennai    |
++-------+--------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> desc student1;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| stdid      | int         | YES  |     | NULL    |       |
+| stdname    | varchar(20) | YES  |     | NULL    |       |
+| stdaddress | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (1.02 sec)
+
+mysql> create table customer(id primary key int,name varchar(20),address varchar(20),accountnumber bigint,password int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary key int,name varchar(20),address varchar(20),accountnumber bigint,passwo' at line 1
+mysql> CREATE TABLE `users` (
+    ->     `user_id` int(11) NOT NULL AUTO_INCREMENT,
+    ->     `username` varchar(45) NOT NULL,
+    ->     `password` varchar(45) NOT NULL,
+    ->     `fullname` varchar(45) NOT NULL,
+    ->     `email` varchar(45) NOT NULL,
+    ->     PRIMARY KEY (`user_id`)
+    ->     PRIMARY KEY (`user_id`)^C
+mysql> ^Z^Z^C
+mysql> CREATE TABLE `users` (
+    ->     `user_id` int(11) NOT NULL AUTO_INCREMENT,
+    ->     `username` varchar(45) NOT NULL,
+    ->     `password` varchar(45) NOT NULL,
+    ->     `fullname` varchar(45) NOT NULL,
+    ->     `email` varchar(45) NOT NULL,
+    ->     PRIMARY KEY (`user_id`)
+    -> );
+Query OK, 0 rows affected, 1 warning (4.82 sec)
+
+mysql> desc users;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| user_id  | int         | NO   | PRI | NULL    | auto_increment |
+| username | varchar(45) | NO   |     | NULL    |                |
+| password | varchar(45) | NO   |     | NULL    |                |
+| fullname | varchar(45) | NO   |     | NULL    |                |
+| email    | varchar(45) | NO   |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.64 sec)
+
+mysql> select * from users;
+Empty set (0.81 sec)
+
+mysql> select * from users;
+Empty set (0.01 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| employee          |
+| student1          |
+| users             |
++-------------------+
+3 rows in set (0.17 sec)
+
+mysql> use table users;
+ERROR 1049 (42000): Unknown database 'table'
+mysql> desc users
+    -> ;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| user_id  | int         | NO   | PRI | NULL    | auto_increment |
+| username | varchar(45) | NO   |     | NULL    |                |
+| password | varchar(45) | NO   |     | NULL    |                |
+| fullname | varchar(45) | NO   |     | NULL    |                |
+| email    | varchar(45) | NO   |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.10 sec)
+
+mysql> select * from users;
+Empty set (0.00 sec)
+
+mysql> drop table users;
+Query OK, 0 rows affected (1.86 sec)
+
+mysql> create table users(user_id int primary key, username varchar(40),password varchar(40),fullname varchar(40),email varchar(40));
+Query OK, 0 rows affected (1.83 sec)
+
+mysql> desc users;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| user_id  | int         | NO   | PRI | NULL    |       |
+| username | varchar(40) | YES  |     | NULL    |       |
+| password | varchar(40) | YES  |     | NULL    |       |
+| fullname | varchar(40) | YES  |     | NULL    |       |
+| email    | varchar(40) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.19 sec)
+
+mysql> select * from users;
+Empty set (0.06 sec)
+
+mysql> desc employee;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| empid          | int         | YES  |     | NULL    |       |
+| empname        | varchar(20) | YES  |     | NULL    |       |
+| empdob         | date        | YES  |     | NULL    |       |
+| empsalary      | smallint    | YES  |     | NULL    |       |
+| empdesignation | varchar(30) | YES  |     | NULL    |       |
+| empstartdate   | date        | YES  |     | NULL    |       |
+| empenddate     | date        | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+7 rows in set (0.02 sec)
+
+mysql> insert into users values(12,'Arasakumaran','root','ArasakumaranP','arasakumaran@gmail.com');
+Query OK, 1 row affected (0.21 sec)
+
+mysql> select * from users;
++---------+--------------+----------+---------------+------------------------+
+| user_id | username     | password | fullname      | email                  |
++---------+--------------+----------+---------------+------------------------+
+|      12 | Arasakumaran | root     | ArasakumaranP | arasakumaran@gmail.com |
++---------+--------------+----------+---------------+------------------------+
+1 row in set (0.10 sec)
+
+mysql> create database customer;
+Query OK, 1 row affected (0.90 sec)
+
+mysql> use customer;
+Database changed
+mysql> create table customer(id int auto_increment primary key,name varchar(20),city varchar(20),address varchar(50),moblieno bigint unique,PAN varchar(20) unique,password varchar(80))auto_increment=1000;
+Query OK, 0 rows affected (3.32 sec)
+
+mysql> insert into customer values(1000,'arasakumaran','dindigul','siluvathur road',9080681027,'IFFDJ45',MD('234F'));
+ERROR 1305 (42000): FUNCTION customer.MD does not exist
+mysql> insert into customer values(1000,'arasakumaran','dindigul','siluvathur road',9080681027,'IFFDJ45',MD5('234F'));
+Query OK, 1 row affected (0.36 sec)
+
+mysql> insert into customer values(1001,'KUMARAN','CHENNAI','SD ROAD',6545548515,'DFSD34',MD5('DFD3'));
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into customer values(1002,'HANSHIKA','CHENNAI','GH ROAD',5421045124,'SDFDF45',MD5('DFDS34'));
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into customer values(1003,'NAYANTHARA','CHENNAI','MGR ROAD',8754121547,'SDFSD45',MD5('DFDS3'));
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into customer values(1004,'SAMANTHA','BANGALORE','ANNA SALAI',4745487521,'GFSD3',MD5('SDFSDF'));
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into customer values(1005,'KAJAL','MADURAI','KALAINGAR NAGAR',4245454212,'DFSDF56',MD5('DFDFG45'));
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into customer values(1006,'NIVETHA PITHURAJ','COIMBATORE','THIRU COLONY',688454512,'FDGGFS4',MD5('SFAW4'));
+Query OK, 1 row affected (0.29 sec)
+
+mysql> insert into customer values(1007,'PRIYA BAVANISHANKAR','CHENNAI','HJ ROAD',545451214,'FGHDF56',MD5('DFGS3'));
+Query OK, 1 row affected (0.27 sec)
+
+mysql> insert into customer values(1008,'OTIS MAEVE','KANYAKUMARI','GH ROAD',578557588,'KJH67',MD5('DFSD5'));
+Query OK, 1 row affected (0.19 sec)
+
+mysql> insert into customer values(1009,'CHRISTOPHER NOLAN','DELHI','RM COLONY',879845465,'ERTW6',MD5('DLK6'));
+Query OK, 1 row affected (0.24 sec)
+
+mysql> insert into customer values(1010,'GAL GOTTA','KOLKATA','MGR SALAI',874545451,'UIYY6',MD5('SDF4'));
+Query OK, 1 row affected (0.11 sec)
+
+mysql> SELECT * FROM CUSTOMER;
++------+---------------------+-------------+-----------------+------------+---------+----------------------------------+
+| id   | name                | city        | address         | moblieno   | PAN     | password                         |
++------+---------------------+-------------+-----------------+------------+---------+----------------------------------+
+| 1000 | arasakumaran        | dindigul    | siluvathur road | 9080681027 | IFFDJ45 | 95361d421f5239bc38215a768d7c299d |
+| 1001 | KUMARAN             | CHENNAI     | SD ROAD         | 6545548515 | DFSD34  | 23fe9e30057ca493cc3f7652c2bfd0d3 |
+| 1002 | HANSHIKA            | CHENNAI     | GH ROAD         | 5421045124 | SDFDF45 | 7e6a87cbe8e801f4f0096a7211eb9f60 |
+| 1003 | NAYANTHARA          | CHENNAI     | MGR ROAD        | 8754121547 | SDFSD45 | 8fff72a9302f88cb6e7c9ef4180351dd |
+| 1004 | SAMANTHA            | BANGALORE   | ANNA SALAI      | 4745487521 | GFSD3   | 2cf1f73f3e1245b2e34d4998024772c2 |
+| 1005 | KAJAL               | MADURAI     | KALAINGAR NAGAR | 4245454212 | DFSDF56 | 71c0a5537e265d4f8958e1ae52f0707e |
+| 1006 | NIVETHA PITHURAJ    | COIMBATORE  | THIRU COLONY    |  688454512 | FDGGFS4 | 02b9875d2f0a5583119fdd401455247d |
+| 1007 | PRIYA BAVANISHANKAR | CHENNAI     | HJ ROAD         |  545451214 | FGHDF56 | 9ab93d134b20648ef01f88b662e4b571 |
+| 1008 | OTIS MAEVE          | KANYAKUMARI | GH ROAD         |  578557588 | KJH67   | 2911d4ce401842ce3cc2d93dde9953c2 |
+| 1009 | CHRISTOPHER NOLAN   | DELHI       | RM COLONY       |  879845465 | ERTW6   | 67b7e4ee9865d1ab36f6b1f95f19604c |
+| 1010 | GAL GOTTA           | KOLKATA     | MGR SALAI       |  874545451 | UIYY6   | b76da611c99e9afe3d8092b7a72eaeef |
++------+---------------------+-------------+-----------------+------------+---------+----------------------------------+
+11 rows in set (0.00 sec)
+
+mysql> create table AccountInfo(accountid bigint auto_increment primary key,id int,foreign key(id)references customer(id),AccountType varchar(20),AccountBalance bigint,AccountOpenDate date,AccountStatus varchar(10) not null CHECK(AccountStatus in ('Open','Closed','Blocked')));
+Query OK, 0 rows affected (3.30 sec)
+
+mysql> insert into AccountInfo values(15879631,1001,'salary',20000,'2000-05-06','open');
+Query OK, 1 row affected (0.32 sec)
+
+mysql> insert into AccountInfo values(15879632,1002,'savings',30000,'2001-10-05','closed');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into AccountInfo values(15879633,1003,'current account',35000,'1999-12-15','blocked');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into AccountInfo values(15879634,1004,'salary',40000,'2005-11-03','closed');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into AccountInfo values(15879635,1005,'savings',45000,'2004-10-10','blocked');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into AccountInfo values(15879636,1006,'salary',50000,'2003-09-09','open');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into AccountInfo values(15879637,1007,'savings',55000,'2002-12-12','closed');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into AccountInfo values(15879638,1008,'current account',60000,'2000-03-02','blocked');
+Query OK, 1 row affected (0.22 sec)
+
+mysql> insert into AccountInfo values(15879640,1009,'salary',70000,'2002-07-07','closed');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into AccountInfo values(15879639,1010,'savings',65000,'1998-12-04','open');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> SELECT * FROM ACCOUNTINFO;
++-----------+------+-----------------+----------------+-----------------+---------------+
+| accountid | id   | AccountType     | AccountBalance | AccountOpenDate | AccountStatus |
++-----------+------+-----------------+----------------+-----------------+---------------+
+|  15879631 | 1001 | salary          |          20000 | 2000-05-06      | open          |
+|  15879632 | 1002 | savings         |          30000 | 2001-10-05      | closed        |
+|  15879633 | 1003 | current account |          35000 | 1999-12-15      | blocked       |
+|  15879634 | 1004 | salary          |          40000 | 2005-11-03      | closed        |
+|  15879635 | 1005 | savings         |          45000 | 2004-10-10      | blocked       |
+|  15879636 | 1006 | salary          |          50000 | 2003-09-09      | open          |
+|  15879637 | 1007 | savings         |          55000 | 2002-12-12      | closed        |
+|  15879638 | 1008 | current account |          60000 | 2000-03-02      | blocked       |
+|  15879639 | 1010 | savings         |          65000 | 1998-12-04      | open          |
+|  15879640 | 1009 | salary          |          70000 | 2002-07-07      | closed        |
++-----------+------+-----------------+----------------+-----------------+---------------+
+10 rows in set (0.00 sec)
+
+mysql> create table transactioninfo(transactionid int auto_increment primary key,accountid bigint,foreign key(accountid)references accountinfo(accountid),transactiontype varchar(20) default 'NotDone',amount bigint check(amount>0),transactiondate date);
+Query OK, 0 rows affected (3.94 sec)
+
+mysql> insert into transactioninfo values(120,15879631,'debit',60000,'2021-06-03');
+Query OK, 1 row affected (0.24 sec)
+
+mysql> insert into transactioninfo values(121,15879633,'debit',70000,'2019-11-07');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into transactioninfo values(127,15879632,'credit',65000,'2020-12-27');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into transactioninfo values(123,15879634,'credit',75000,'2020-04-10');
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into transactioninfo values(124,15879635,'debit',80000,'2019-11-03');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into transactioninfo values(125,15879636,'credit',85000,'2018-05-01');
+Query OK, 1 row affected (0.19 sec)
+
+mysql> insert into transactioninfo values(126,15879637,'debit',85500,'207-10-10');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into transactioninfo values(128,15879638,'credit',85504,'2017-02-02');
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into transactioninfo values(129,15879639,'credit',90000,'2016-12-05');
+Query OK, 1 row affected (0.14 sec)
+
+mysql>
+mysql> select *from transactioninfo;
++---------------+-----------+-----------------+--------+-----------------+
+| transactionid | accountid | transactiontype | amount | transactiondate |
++---------------+-----------+-----------------+--------+-----------------+
+|           120 |  15879631 | debit           |  60000 | 2021-06-03      |
+|           121 |  15879633 | debit           |  70000 | 2019-11-07      |
+|           123 |  15879634 | credit          |  75000 | 2020-04-10      |
+|           124 |  15879635 | debit           |  80000 | 2019-11-03      |
+|           125 |  15879636 | credit          |  85000 | 2018-05-01      |
+|           126 |  15879637 | debit           |  85500 | 0207-10-10      |
+|           127 |  15879632 | credit          |  65000 | 2020-12-27      |
+|           128 |  15879638 | credit          |  85504 | 2017-02-02      |
+|           129 |  15879639 | credit          |  90000 | 2016-12-05      |
++---------------+-----------+-----------------+--------+-----------------+
+9 rows in set (0.00 sec)
+
+mysql> insert into transactioninfo values(130,15879640,'debit',90500,'2016-11-05');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select *from transactioninfo;
++---------------+-----------+-----------------+--------+-----------------+
+| transactionid | accountid | transactiontype | amount | transactiondate |
++---------------+-----------+-----------------+--------+-----------------+
+|           120 |  15879631 | debit           |  60000 | 2021-06-03      |
+|           121 |  15879633 | debit           |  70000 | 2019-11-07      |
+|           123 |  15879634 | credit          |  75000 | 2020-04-10      |
+|           124 |  15879635 | debit           |  80000 | 2019-11-03      |
+|           125 |  15879636 | credit          |  85000 | 2018-05-01      |
+|           126 |  15879637 | debit           |  85500 | 0207-10-10      |
+|           127 |  15879632 | credit          |  65000 | 2020-12-27      |
+|           128 |  15879638 | credit          |  85504 | 2017-02-02      |
+|           129 |  15879639 | credit          |  90000 | 2016-12-05      |
+|           130 |  15879640 | debit           |  90500 | 2016-11-05      |
++---------------+-----------+-----------------+--------+-----------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from transactioninfo where accountid=15879640 order by transactiondate desc limit 5;
++---------------+-----------+-----------------+--------+-----------------+
+| transactionid | accountid | transactiontype | amount | transactiondate |
++---------------+-----------+-----------------+--------+-----------------+
+|           130 |  15879640 | debit           |  90500 | 2016-11-05      |
++---------------+-----------+-----------------+--------+-----------------+
+1 row in set (0.11 sec)
+
+mysql> select *from transactioninfo where accountid=15879640 and transactiondate between '2017-02-05' and '2020-03-02';
+Empty set (0.00 sec)
+
+mysql>  select * from accountinfo where id=1000;
+Empty set (0.42 sec)
+
+mysql>  select * from accountinfo where id=1001;
++-----------+------+-------------+----------------+-----------------+---------------+
+| accountid | id   | AccountType | AccountBalance | AccountOpenDate | AccountStatus |
++-----------+------+-------------+----------------+-----------------+---------------+
+|  15879631 | 1001 | salary      |          20000 | 2000-05-06      | open          |
++-----------+------+-------------+----------------+-----------------+---------------+
+1 row in set (0.09 sec)
+
+mysql> select a.id,a.name,a.address,a.moblieno,b.accountid,b.accountbalance from customer a,accountinfo b where a.id=b.id;
++------+---------------------+-----------------+------------+-----------+----------------+
+| id   | name                | address         | moblieno   | accountid | accountbalance |
++------+---------------------+-----------------+------------+-----------+----------------+
+| 1001 | KUMARAN             | SD ROAD         | 6545548515 |  15879631 |          20000 |
+| 1002 | HANSHIKA            | GH ROAD         | 5421045124 |  15879632 |          30000 |
+| 1003 | NAYANTHARA          | MGR ROAD        | 8754121547 |  15879633 |          35000 |
+| 1004 | SAMANTHA            | ANNA SALAI      | 4745487521 |  15879634 |          40000 |
+| 1005 | KAJAL               | KALAINGAR NAGAR | 4245454212 |  15879635 |          45000 |
+| 1006 | NIVETHA PITHURAJ    | THIRU COLONY    |  688454512 |  15879636 |          50000 |
+| 1007 | PRIYA BAVANISHANKAR | HJ ROAD         |  545451214 |  15879637 |          55000 |
+| 1008 | OTIS MAEVE          | GH ROAD         |  578557588 |  15879638 |          60000 |
+| 1009 | CHRISTOPHER NOLAN   | RM COLONY       |  879845465 |  15879640 |          70000 |
+| 1010 | GAL GOTTA           | MGR SALAI       |  874545451 |  15879639 |          65000 |
++------+---------------------+-----------------+------------+-----------+----------------+
+10 rows in set (0.07 sec)
+
+mysql> select a.accountid,a.accountbalance,b.transactionid,b.amount,b.transactiontype from accountinfo a,transactioninfo b where a.accountid=b.accountid;
++-----------+----------------+---------------+--------+-----------------+
+| accountid | accountbalance | transactionid | amount | transactiontype |
++-----------+----------------+---------------+--------+-----------------+
+|  15879631 |          20000 |           120 |  60000 | debit           |
+|  15879632 |          30000 |           127 |  65000 | credit          |
+|  15879633 |          35000 |           121 |  70000 | debit           |
+|  15879634 |          40000 |           123 |  75000 | credit          |
+|  15879635 |          45000 |           124 |  80000 | debit           |
+|  15879636 |          50000 |           125 |  85000 | credit          |
+|  15879637 |          55000 |           126 |  85500 | debit           |
+|  15879638 |          60000 |           128 |  85504 | credit          |
+|  15879639 |          65000 |           129 |  90000 | credit          |
+|  15879640 |          70000 |           130 |  90500 | debit           |
++-----------+----------------+---------------+--------+-----------------+
+10 rows in set (0.00 sec)
+
+mysql> select a.id,a.name,a.name,a.moblieno,b.accountid,b.accountbalance,c.transactionid,c.amount,c.transactiontype from customer a,accountinofo b,transactioninfo c where a.id=b.id and b.accountid=c.accountid;
+ERROR 1146 (42S02): Table 'customer.accountinofo' doesn't exist
+mysql> select a.id,a.name,a.name,a.moblieno,b.accountid,b.accountbalance,c.transactionid,c.amount,c.transactiontype from customer a,accountinfo b,transactioninfo c where a.id=b.id and b.accountid=c.accountid;
++------+---------------------+---------------------+------------+-----------+----------------+---------------+--------+-----------------+
+| id   | name                | name                | moblieno   | accountid | accountbalance | transactionid | amount | transactiontype |
++------+---------------------+---------------------+------------+-----------+----------------+---------------+--------+-----------------+
+| 1001 | KUMARAN             | KUMARAN             | 6545548515 |  15879631 |          20000 |           120 |  60000 | debit           |
+| 1002 | HANSHIKA            | HANSHIKA            | 5421045124 |  15879632 |          30000 |           127 |  65000 | credit          |
+| 1003 | NAYANTHARA          | NAYANTHARA          | 8754121547 |  15879633 |          35000 |           121 |  70000 | debit           |
+| 1004 | SAMANTHA            | SAMANTHA            | 4745487521 |  15879634 |          40000 |           123 |  75000 | credit          |
+| 1005 | KAJAL               | KAJAL               | 4245454212 |  15879635 |          45000 |           124 |  80000 | debit           |
+| 1006 | NIVETHA PITHURAJ    | NIVETHA PITHURAJ    |  688454512 |  15879636 |          50000 |           125 |  85000 | credit          |
+| 1007 | PRIYA BAVANISHANKAR | PRIYA BAVANISHANKAR |  545451214 |  15879637 |          55000 |           126 |  85500 | debit           |
+| 1008 | OTIS MAEVE          | OTIS MAEVE          |  578557588 |  15879638 |          60000 |           128 |  85504 | credit          |
+| 1010 | GAL GOTTA           | GAL GOTTA           |  874545451 |  15879639 |          65000 |           129 |  90000 | credit          |
+| 1009 | CHRISTOPHER NOLAN   | CHRISTOPHER NOLAN   |  879845465 |  15879640 |          70000 |           130 |  90500 | debit           |
++------+---------------------+---------------------+------------+-----------+----------------+---------------+--------+-----------------+
+10 rows in set (0.00 sec)
+
+mysql>
+mysql>  create database FoodOrdering;
+Query OK, 1 row affected (0.22 sec)
+
+mysql> use FoodOrdering;
+Database changed
+mysql> create table restaurants(restaurantid int auto_increment primary key,restaurantname varchar(20),restraurantaddress varchar(20),restaurantcity varchar(20),contactno bigint);
+Query OK, 0 rows affected (2.15 sec)
+
+mysql> insert into restaurants values(10,'AACHIS','HM ROAD','MADURAI',9856321567);
+Query OK, 1 row affected (0.94 sec)
+
+mysql> insert into restaurants values(11,'ADYAR ANANDA BHAVAN','ANNA SALAI','CHENNAI',548458745);
+Query OK, 1 row affected (0.25 sec)
+
+mysql> insert into restaurants values(12,'KFC','MGR SALAI','CHENNAI',878517545);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into restaurants values(13,'DOMINOS','GFJ ROAD','COIMBATORE',9874554254);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into restaurants values(14,'GEETHA','DF ROAD','THIRUNELVELI',948451524);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into restaurants values(15,'BELL HOTEL','THIRUMANGALAM','MADURAI',9451841115);
+Query OK, 1 row affected (0.21 sec)
+
+mysql> SELECT * FROM RESTAURANTS;
++--------------+---------------------+--------------------+----------------+------------+
+| restaurantid | restaurantname      | restraurantaddress | restaurantcity | contactno  |
++--------------+---------------------+--------------------+----------------+------------+
+|           10 | AACHIS              | HM ROAD            | MADURAI        | 9856321567 |
+|           11 | ADYAR ANANDA BHAVAN | ANNA SALAI         | CHENNAI        |  548458745 |
+|           12 | KFC                 | MGR SALAI          | CHENNAI        |  878517545 |
+|           13 | DOMINOS             | GFJ ROAD           | COIMBATORE     | 9874554254 |
+|           14 | GEETHA              | DF ROAD            | THIRUNELVELI   |  948451524 |
+|           15 | BELL HOTEL          | THIRUMANGALAM      | MADURAI        | 9451841115 |
++--------------+---------------------+--------------------+----------------+------------+
+6 rows in set (0.11 sec)
+
+mysql> create table menuitems(menuid int auto_increment primary key,restaurantid int,foreign key(restaurantid) references restaurants(restaurantid),menuname varchar(20),menutype varchar(20),menucategory varchar(20),menuprice int,menudesc varchar(20));
+Query OK, 0 rows affected (3.09 sec)
+
+mysql> insert into menuitems values(50,10,'veg','dessert','dinner',90,'brownie');
+Query OK, 1 row affected (0.22 sec)
+
+mysql> insert into menuitems values(51,11,'veg','main dish','breakfast',100,'dosa');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into menuitems values(52,12,'non-veg','main dish','lunch',150,'chicken briyani');
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into menuitems values(53,13,'non-veg','main dish','dinner',120,'mixed noodles');
+Query OK, 1 row affected (0.16 sec)
+
+mysql> insert into menuitems values(54,14,'veg','salad','snacks',50,'panner salad');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into menuitems values(55,15,'non-veg','side dish','breakfast',100,'curry dosai');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> select*from menuitems;
++--------+--------------+----------+-----------+--------------+-----------+-----------------+
+| menuid | restaurantid | menuname | menutype  | menucategory | menuprice | menudesc        |
++--------+--------------+----------+-----------+--------------+-----------+-----------------+
+|     50 |           10 | veg      | dessert   | dinner       |        90 | brownie         |
+|     51 |           11 | veg      | main dish | breakfast    |       100 | dosa            |
+|     52 |           12 | non-veg  | main dish | lunch        |       150 | chicken briyani |
+|     53 |           13 | non-veg  | main dish | dinner       |       120 | mixed noodles   |
+|     54 |           14 | veg      | salad     | snacks       |        50 | panner salad    |
+|     55 |           15 | non-veg  | side dish | breakfast    |       100 | curry dosai     |
++--------+--------------+----------+-----------+--------------+-----------+-----------------+
+6 rows in set (0.00 sec)
+
+mysql> create table customers(customerid varchar(20) primary key,customername varchar(20),customercity varchar(10),customerDOB date,customergender varchar(10) check(customergender IN('F','M','T')),customerpassword varchar(50));
+Query OK, 0 rows affected (2.05 sec)
+
+mysql> insert into customers values('arasakumaran@gmail.com','ARASAKUMARAN','CHENNAI','2000-05-06','M',MD5('DF@06'));
+ERROR 1406 (22001): Data too long for column 'customerid' at row 1
+mysql> insert into customers values('arasakum@gmail.com','ARASAKUMARAN','CHENNAI','2000-05-06','M',MD5('DF@06'));
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into customers values('narain@gmail.com','narain','tvl','2008-02-28','M',MD5('narain8'));
+Query OK, 1 row affected (0.23 sec)
+
+mysql> insert into customers values('sakthi14@gmail.com','parasakthi','cbe','1977-10-14','F',MD5('sakthi14'));
+Query OK, 1 row affected (0.32 sec)
+
+mysql> insert into customers values('sukir28@gmail.com','sukirthan','theni','2007-10-13','M',MD5('sukir'));
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into customers values('anushaa@gmail.com','anushaa','chennai','1999-06-26','F',MD5('ansuh@26'));
+Query OK, 1 row affected (0.06 sec)
+
+mysql>  select*from customers;
++--------------------+--------------+--------------+-------------+----------------+----------------------------------+
+| customerid         | customername | customercity | customerDOB | customergender | customerpassword                 |
++--------------------+--------------+--------------+-------------+----------------+----------------------------------+
+| anushaa@gmail.com  | anushaa      | chennai      | 1999-06-26  | F              | e863b64bd81f5732a11713184ddc8af1 |
+| arasakum@gmail.com | ARASAKUMARAN | CHENNAI      | 2000-05-06  | M              | 976e117131dd041c890c6ceb29ae5157 |
+| narain@gmail.com   | narain       | tvl          | 2008-02-28  | M              | 8dc4af1754008b7d2cd642ce4f0edde2 |
+| sakthi14@gmail.com | parasakthi   | cbe          | 1977-10-14  | F              | 54a1d1a247256fc4e11bf9a4bc6a9e37 |
+| sukir28@gmail.com  | sukirthan    | theni        | 2007-10-13  | M              | a100b3ee7ea55fd9e589a1fa0dea2835 |
++--------------------+--------------+--------------+-------------+----------------+----------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table orders(orderid int auto_increment primary key,customerid varchar(20),foreign key(customerid) references customers(customerid),orderdate date,deliveryaddress varchar(20),orderstatus varchar(20) check(orderstatus in('Delivered','Cancelled')));
+Query OK, 0 rows affected (3.52 sec)
+
+mysql> insert into orders values(30,'anushaa@gmail.com','2021-02-03','Theni','Delivered');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into orders values(33,'narain@gmail.com','2021-04-22','tvl','Delivered');
+Query OK, 1 row affected (0.19 sec)
+
+mysql> insert into orders values(34,'sakthi14@gmail.com','2021-05-06','cbe','Delivered');
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into orders values(32,'sukir28@gmail.com','2021-05-08','chennai','Cancelled');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> select * from orders;
++---------+--------------------+------------+-----------------+-------------+
+| orderid | customerid         | orderdate  | deliveryaddress | orderstatus |
++---------+--------------------+------------+-----------------+-------------+
+|      30 | anushaa@gmail.com  | 2021-02-03 | Theni           | Delivered   |
+|      32 | sukir28@gmail.com  | 2021-05-08 | chennai         | Cancelled   |
+|      33 | narain@gmail.com   | 2021-04-22 | tvl             | Delivered   |
+|      34 | sakthi14@gmail.com | 2021-05-06 | cbe             | Delivered   |
++---------+--------------------+------------+-----------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> create table ordermenus(orderid int,foreign key(orderid)references orders(orderid),menuid int,foreign key(menuid)references menuitems(menuid),menuqty int,menuprice int);
+Query OK, 0 rows affected (2.40 sec)
+
+mysql> insert into ordermenus values(31,51,1,100);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`foodordering`.`ordermenus`, CONSTRAINT `ordermenus_ibfk_1` FOREIGN KEY (`orderid`) REFERENCES `orders` (`orderid`))
+mysql> insert into ordermenus values(32,51,1,100);
+Query OK, 1 row affected (1.22 sec)
+
+mysql> insert into ordermenus values(30,52,5,860);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into ordermenus values(33,53,2,250);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into ordermenus values(34,55,1,90);
+Query OK, 1 row affected (0.18 sec)
+
+mysql> select*from ordermenus;
++---------+--------+---------+-----------+
+| orderid | menuid | menuqty | menuprice |
++---------+--------+---------+-----------+
+|      32 |     51 |       1 |       100 |
+|      30 |     52 |       5 |       860 |
+|      33 |     53 |       2 |       250 |
+|      34 |     55 |       1 |        90 |
++---------+--------+---------+-----------+
+4 rows in set (0.00 sec)
+
+mysql>  select restaurantname,restaurantcity from restaurants where restaurantcity='chennai';
++---------------------+----------------+
+| restaurantname      | restaurantcity |
++---------------------+----------------+
+| ADYAR ANANDA BHAVAN | CHENNAI        |
+| KFC                 | CHENNAI        |
++---------------------+----------------+
+2 rows in set (1.42 sec)
+
+mysql> select a.restaurantid,a.restaurantname,b.menuid,b.menuname,b.menuprice from restaurants a,menuitems b where a.restaurantid=b.restaurantid;
++--------------+---------------------+--------+----------+-----------+
+| restaurantid | restaurantname      | menuid | menuname | menuprice |
++--------------+---------------------+--------+----------+-----------+
+|           10 | AACHIS              |     50 | veg      |        90 |
+|           11 | ADYAR ANANDA BHAVAN |     51 | veg      |       100 |
+|           12 | KFC                 |     52 | non-veg  |       150 |
+|           13 | DOMINOS             |     53 | non-veg  |       120 |
+|           14 | GEETHA              |     54 | veg      |        50 |
+|           15 | BELL HOTEL          |     55 | non-veg  |       100 |
++--------------+---------------------+--------+----------+-----------+
+6 rows in set (0.04 sec)
+
+mysql> select a.restaurantid,a.restaurantname,b.menuid,b.menuname,b.menuprice from restaurants a,menuitems b where a.restaurantcity='chennai';
++--------------+---------------------+--------+----------+-----------+
+| restaurantid | restaurantname      | menuid | menuname | menuprice |
++--------------+---------------------+--------+----------+-----------+
+|           12 | KFC                 |     50 | veg      |        90 |
+|           11 | ADYAR ANANDA BHAVAN |     50 | veg      |        90 |
+|           12 | KFC                 |     51 | veg      |       100 |
+|           11 | ADYAR ANANDA BHAVAN |     51 | veg      |       100 |
+|           12 | KFC                 |     52 | non-veg  |       150 |
+|           11 | ADYAR ANANDA BHAVAN |     52 | non-veg  |       150 |
+|           12 | KFC                 |     53 | non-veg  |       120 |
+|           11 | ADYAR ANANDA BHAVAN |     53 | non-veg  |       120 |
+|           12 | KFC                 |     54 | veg      |        50 |
+|           11 | ADYAR ANANDA BHAVAN |     54 | veg      |        50 |
+|           12 | KFC                 |     55 | non-veg  |       100 |
+|           11 | ADYAR ANANDA BHAVAN |     55 | non-veg  |       100 |
++--------------+---------------------+--------+----------+-----------+
+12 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
